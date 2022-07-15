@@ -16,8 +16,8 @@ class Person:
     def get_id_no(self):
         return self._id_no
 
-    def display(self):
-        return [self._id, self._full_name, self._age, self._phone_num, self._id_no]
+    def get_name(self):
+        return self._full_name
 
 
 class Client(Person):
