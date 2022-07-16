@@ -43,7 +43,7 @@ while True:
                     a-make a borrow order
                     b-display all clients
                     c-display available books
-                    r-return""")
+                    d-return""")
             choice = input("Your choice: ")
             if choice == "a":
                 b_id = input("Enter the book's id please: ")
@@ -87,7 +87,7 @@ while True:
                 for i in available_books:
                     print(f"title : {''.join(i.get_name())}  id: {''.join(i.get_id())}")
                 continue
-            if choice == "r":
+            if choice == "d":
                 break
             else:
                 print("invalid input")
@@ -106,7 +106,7 @@ while True:
                 elif "".join(or_exist[0].get_status()) == "Cancel":
                     print("the ordr already canceled")
                     break
-                elif or_exist[0].get_end_date()[0] < datetime.date.today():
+                elif "".join(or_exist[0].get_status()) == "Expire":
                     print("the ordr already expired")
                     break
             else:
@@ -123,16 +123,22 @@ while True:
                     b-books
                     c-orders
                     d-librarians
-                    r-return to main""")
+                    1-return to main""")
             choice = (input("Your choice: "))
-            if choice == "r":
-                break
+            if choice == "a":
+                print("List of clients:")
+                print(f"number of clients : {len(clients)}")
+                for i in clients:
+                    print(f"Full.Name: {i.display()['full_name'][0]}", end="|  |")
+                    print(f"Age: {i.display()['age'][0]}", end="|  |")
+                    print(f"Phone no: {i.display()['phone_num'][0]}", end="|  |")
+                    print(f"Library-Id: {i.display()['library_id']}")
             if choice == "b":
                 while True:
                     print("""Services:
                             a-available books
                             b-borrowed books
-                            r- return""")
+                            2- return""")
                     choice = input("Your choice: ")
                     if choice == "a":
                         available_books = [i for i in books if "".join(i.get_status()) == "Active"]
@@ -146,28 +152,80 @@ while True:
                         for i in borrowed_books:
                             print(f"title2 : {''.join(i.get_name())}  id2: {''.join(i.get_id())}")
 
-                    if choice == "r":
+                    if choice == "2":
                         break
             if choice == "c":
                 while True:
                     print("""Services:
-                            a-active orders list
-                            b-expired orders list
-                            c- cancelled orders list
-                            d-check order status
-                            r-return""")
+                            a-All orders list
+                            b-active orders list
+                            c-expired orders list
+                            d- cancelled orders list
+                            e-check single order status
+                            3-return""")
                     choice = input("Your choice: ")
                     if choice == "a":
+                        print(f"All orders list")
+                        print(f"The number of active orders : {len(orders)}")
+                        for i in orders:
+                            print(f"Id: {i.display()['id'][0]}", end="|  |")
+                            print(f"S.date: {i.display()['start_date'][0]}", end="|  |")
+                            print(f"E.date: {i.display()['end_date'][0]}", end="|  |")
+                            print(f"Book-Id: {i.display()['book_id'][0]}", end="|  |")
+                            print(f"Client-Id: {i.display()['client_id'][0]}", end="|  |")
+                            print(f"Status: {''.join(i.display()['status'])}")
+                    if choice == "b":
                         active_orders = [i for i in orders if "".join(i.get_status()) == "Active"]
-                        print(f"{len(active_orders)}")
                         print(f"Active orders list")
+                        print(f"The number of active orders : {len(active_orders)}")
                         for i in active_orders:
-                            print(f"Id {''.join(i.get_id())}")
-
-
-
-
-
+                            print(f"Id: {i.display()['id'][0]}", end="|  |")
+                            print(f"S.date: {i.display()['start_date'][0]}", end="|  |")
+                            print(f"E.date: {i.display()['end_date'][0]}", end="|  |")
+                            print(f"Book-Id: {i.display()['book_id'][0]}", end="|  |")
+                            print(f"Client-Id: {i.display()['client_id'][0]}", end="|  |")
+                    if choice == "c":
+                        expired_orders = [i for i in orders if "".join(i.get_status()) == "Expired"]
+                        print(f"Expired orders list")
+                        print(f"The number of expired orders : {len(expired_orders)}")
+                        for i in expired_orders:
+                            print(f"Id: {i.display()['id'][0]}", end="|  |")
+                            print(f"S.date: {i.display()['start_date'][0]}", end="|  |")
+                            print(f"E.date: {i.display()['end_date'][0]}", end="|  |")
+                            print(f"Book-Id: {i.display()['book_id'][0]}", end="|  |")
+                            print(f"Client-Id: {i.display()['client_id'][0]}", end="|  |")
+                    if choice == "d":
+                        cancelled_orders = [i for i in orders if "".join(i.get_status()) == "Cancelled"]
+                        print(f"Cancelled orders list")
+                        print(f"The number of expired orders : {len(cancelled_orders)}")
+                        for i in cancelled_orders:
+                            print(f"Id: {i.display()['id'][0]}", end="|  |")
+                            print(f"S.date: {i.display()['start_date'][0]}", end="|  |")
+                            print(f"E.date: {i.display()['end_date'][0]}", end="|  |")
+                            print(f"Book-Id: {i.display()['book_id'][0]}", end="|  |")
+                            print(f"Client-Id: {i.display()['client_id'][0]}", end="|  |")
+                    if choice == "e":
+                        or_id = input("Enter the order id please: ")
+                        or_exist = [i for i in orders if or_id == "".join(i.get_id())]
+                        if len(or_exist) != 0:
+                            bo_exist = [i for i in books if "".join(i.get_id()) == "".join(or_exist[0].get_book_id())]
+                            print(
+                                f"The status of the borrow order for the book with title {''.join(bo_exist[0].get_name())} is {''.join(or_exist[0].get_status())}")
+                        else:
+                            print("The borrow order id that you entered is not exist , try to enter valid id.")
+                    if choice == "3":
+                        break
+            if choice == "d":
+                print("List of librarians:")
+                print(f"number of librarians : {len(librarians)}")
+                for i in librarians:
+                    print(f"Full.Name: {i.display()['full_name'][0]}", end="|  |")
+                    print(f"Age: {i.display()['age'][0]}", end="|  |")
+                    print(f"Phone no: {i.display()['phone_num'][0]}", end="|  |")
+                    print(f"Library-Id: {i.display()['library_id']}", end="|  |")
+                    print(f"Salary: {i.get_salary()}$")
+            if choice == "1":
+                break
 
     if choice == 6:
         break
