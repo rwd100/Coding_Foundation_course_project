@@ -19,6 +19,14 @@ class Person:
     def get_name(self):
         return self._full_name
 
+    def display(self):
+        return {
+            "full_name": self._full_name,
+            "age": self._age,
+            "phone_num": self._phone_num,
+            "library_id": self.get_id_no(),
+        }
+
 
 class Client(Person):
     def __init__(self, full_name, age, phone_num):
@@ -34,6 +42,9 @@ class Librarian(Person):
 
     def set_salary(self, salary1):
         self._salary = salary1
+
+    def get_salary(self):
+        return self._salary
 
 
 class Book:
@@ -65,11 +76,21 @@ class Book:
 class BorrowOrder:
     def __init__(self, end_date, book_id, client_id):
         self._id = "Or_" + str(randint(111, 999)),
-        self._start_date = datetime.date.today(),
+        self._start_date = datetime.date.today().strftime("%b %d %Y"),
         self._end_date = end_date,
         self._book_id = book_id,
         self._client_id = client_id,
         self._status = "Active",
+
+    def display(self):
+        return {
+            "id": self._id,
+            "start_date": self._start_date,
+            "end_date": self._end_date,
+            "book_id": self._book_id,
+            "client_id": self._client_id,
+            "status": self._status
+        }
 
     def get_id(self):
         return self._id
@@ -86,7 +107,7 @@ class BorrowOrder:
                 return self._status
 
     def cancel(self):
-        self._status = "Canceled"
+        self._status = "Cancelled"
 
     def get_status(self):
         return self._status
@@ -101,7 +122,3 @@ class BorrowOrder:
         return "".join(self._book_id)
 
 
-end_date1 = datetime.date.today() - datetime.timedelta(days=3)
-new_order = BorrowOrder(end_date=end_date1, book_id="B_510", client_id="Cl_280")
-
-print(new_order.check_status())
