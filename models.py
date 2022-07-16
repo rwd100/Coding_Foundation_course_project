@@ -134,5 +134,3 @@ class BorrowOrder:
         return "".join(self._book_id)
 
 
-b = Book("raad", "dddd", "kkkk")
-print(b.display())
