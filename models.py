@@ -72,6 +72,9 @@ class Book:
     def get_status(self):
         return self._status
 
+    def get_author(self):
+        return self._author
+
     def display(self):
         return {
             "id": self.get_id(),

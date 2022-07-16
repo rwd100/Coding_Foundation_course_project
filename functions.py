@@ -15,7 +15,7 @@ def add_client(Client, clients):
             print("enter the full name please")
             continue
         else:
-            full_name = name.capitalize()
+            full_name = name.upper()
             break
     while True:
         age = input("Enter the client's age please: ")
@@ -66,7 +66,7 @@ def add_librarian(Librarian, librarians):
             print("enter the full name please")
             continue
         else:
-            full_name = name.capitalize()
+            full_name = name.upper()
             break
     while True:
         age = input("Enter the librarian's age please: ")
@@ -116,7 +116,7 @@ def add_book(Book, books):
     author = ""
     while True:
         t = input("Enter the book's title please: ")
-        if not t.isalpha():
+        if not "".join(t.split()).isalpha():
             print("enter a a valid name please")
             continue
         else:
