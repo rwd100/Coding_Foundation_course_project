@@ -1,3 +1,6 @@
+from models import Book
+
+
 def add_client(Client, clients):
     full_name = ""
     age_num = ""
@@ -46,6 +49,8 @@ def add_client(Client, clients):
     print(f"A new client had been added successfully ,his id is '{new_client.get_id_no()}'")
     return new_client
 
+
+# title, description, author
 
 def add_librarian(Librarian, librarians):
     full_name = ""
@@ -103,4 +108,35 @@ def add_librarian(Librarian, librarians):
     new_librarian.set_salary(salary)
     librarians.append(new_librarian)
     print(f"A new librarian had been added successfully ,his id is '{new_librarian.get_id_no()}'")
-    return  new_librarian
+    return new_librarian
+
+
+def add_book(Book, books):
+    title = ""
+    author = ""
+    while True:
+        t = input("Enter the book's title please: ")
+        if not t.isalpha():
+            print("enter a a valid name please")
+            continue
+        else:
+            title = t.upper()
+            break
+    description = input("Enter the book's description please: ")
+    while True:
+        a = input("Enter the book's author name please: ")
+        if not t.isalpha():
+            print("enter a a valid name please")
+            continue
+        else:
+            author = a.upper()
+            break
+
+    new_book = Book(
+        title=title,
+        description=description,
+        author=author,)
+
+    books.append(new_book)
+    print(f"A new book had been added successfully ,his id is '{new_book.get_id()}'")
+    return new_book

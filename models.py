@@ -49,7 +49,7 @@ class Librarian(Person):
 
 class Book:
     def __init__(self, title, description, author):
-        self.id = "B_" + str(randint(111, 999)),
+        self._id = "B_" + str(randint(111, 999)),
         self._title = title,
         self._description = description,
         self._author = author,
@@ -64,13 +64,22 @@ class Book:
         return self._status
 
     def get_id(self):
-        return "".join(self.id)
+        return "".join(self._id)
 
     def get_name(self):
         return self._title
 
     def get_status(self):
         return self._status
+
+    def display(self):
+        return {
+            "id": self.get_id(),
+            "title": self._title,
+            "description": self._description,
+            "author": self._author,
+            "status": self.get_status(),
+        }
 
 
 class BorrowOrder:
@@ -122,3 +131,5 @@ class BorrowOrder:
         return "".join(self._book_id)
 
 
+b = Book("raad", "dddd", "kkkk")
+print(b.display())
