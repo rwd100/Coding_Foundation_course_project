@@ -76,7 +76,7 @@ class Book:
 class BorrowOrder:
     def __init__(self, end_date, book_id, client_id):
         self._id = "Or_" + str(randint(111, 999)),
-        self._start_date = datetime.date.today().strftime("%b %d %Y"),
+        self._start_date = datetime.date.today().strftime("%b %d %Y")
         self._end_date = end_date,
         self._book_id = book_id,
         self._client_id = client_id,
