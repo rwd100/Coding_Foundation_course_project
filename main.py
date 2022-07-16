@@ -3,19 +3,20 @@ from functions import add_client, add_librarian, add_book
 from models import Client, Book, Librarian, BorrowOrder
 
 print("Welcome to our Library system")
-
+# The Star Wars Book: Expand your knowledge of a galaxy far, far away
 orders = []
 librarians = []
 clients = [
-    Client("Hasan Okla", 32, "0596665866"),
-    Client("Awad Mansea", 36, "05966658"),
-    Client("Shafek Adal", 20, "05966658"),
+    Client("ADEL OKLA", 32, "0599123456"),
+    Client("AWAD AL BATAL", 36, "0599654321"),
+    Client("SHAFEAK GARMA", 28, "0598765432"),
 ]
 books = [
-    Book("Star Wars1", "it is about sci-fi stories", "Aydal"),
-    Book("Star Wars2", "it is about sci-fi stories", "Aydal"),
-    Book("Star Wars3", "it is about sci-fi stories", "Aydal"),
-    Book("Star Wars4", "it is about sci-fi stories", "Aydal"),
+    Book("THE STAR WARS", "Expand your knowledge of a galaxy far, far away", "DAN ZEHR "),
+    Book("TO KILL A MOCKINGBIRD", "To Kill a Mockingbird has become a classic of modern American literature",
+         "HARPER LEE"),
+    Book("NINETEEN EIGHTY-FOUR", "Is a dystopian social science fiction novel and cautionary tale", "GEORGE ORWELL"),
+    Book("THE CALL OF THE WILD", "is a short adventure novel", "JACK LONDON"),
 ]
 while True:
     print("""Main:
@@ -53,8 +54,10 @@ while True:
             if choice == "a":
                 b_id = input("Enter the book's id please: ")
                 b_exist = [i for i in books if b_id == "".join(i.get_id()) and "".join(i.get_status()) == "Active"]
+                order_id = [i for i in orders if b_id == "".join(i.get_book_id())]
                 if len(b_exist) == 0:
-                    print("Sorry this book id is not available  ...!!!")
+                    print(
+                        f"Sorry this book is not available now...!!! , will be available after {''.join(order_id[0].get_end_date())}")
                     continue
                 else:
                     id1 = input("Enter the client's library id please :")
@@ -92,7 +95,8 @@ while True:
                 print("List of available books:")
                 available_books = [i for i in books if "".join(i.get_status()) == "Active"]
                 for i in available_books:
-                    print(f"title : {''.join(i.get_name())}  author: {''.join(i.get_author())}  id: {''.join(i.get_id())}")
+                    print(
+                        f"title : {''.join(i.get_name())}  author: {''.join(i.get_author())}  id: {''.join(i.get_id())}")
                 print(f"Returned to Borrow_Order")
                 continue
             if choice == "m":
