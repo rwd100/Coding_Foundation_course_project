@@ -57,7 +57,7 @@ while True:
                 order_id = [i for i in orders if b_id == "".join(i.get_book_id())]
                 if len(b_exist) == 0:
                     print(
-                        f"Sorry this book is not available now...!!! , will be available after {''.join(order_id[0].get_end_date())}")
+                        f"Sorry this book is not available now...!!! , will be available after '{''.join(order_id[0].get_end_date())}'")
                     continue
                 else:
                     id1 = input("Enter the client's library id please :")
@@ -82,7 +82,7 @@ while True:
                         client_id=client.get_id_no())
                     orders.append(order)
                     print(
-                        f"The book reserved successfully with order id '{''.join(order.get_id())}', and will be returned on {a} ")
+                        f"The book reserved successfully with order id '{''.join(order.get_id())}', and will be returned on '{a}' ")
                     print("Returned to Borrow_Order")
                     continue
             if choice == "b":
@@ -114,15 +114,15 @@ while True:
                     or_exist[0].cancel()
                     book = [i for i in books if or_exist[0].get_book_id() == "".join(i.get_id())]
                     book[0].return_book()
-                    print(f"The book with title {''.join(book[0].get_name())} successfully returned ")
+                    print(f"The book with title ({''.join(book[0].get_name())}) successfully returned ")
                     choice = "**"
                     break
                 elif "".join(or_exist[0].get_status()) == "Cancel":
-                    print("the ordr already canceled")
+                    print("the order already canceled")
                     choice = "**"
                     break
                 elif "".join(or_exist[0].get_status()) == "Expire":
-                    print("the ordr already expired")
+                    print("the order already expired")
                     choice = "**"
                     break
             else:
@@ -220,7 +220,7 @@ while True:
                         if len(orders) == 0:
                             print("The list is empty")
                         else:
-                            print(f"The number of active orders : {len(orders)}")
+                            print(f"The number of all orders : {len(orders)}")
                             for i in orders:
                                 print(f"Id: {i.display()['id'][0]}", end="|  |")
                                 print(f"S.date: {''.join(i.display()['start_date'])}", end="|  |")
@@ -263,7 +263,7 @@ while True:
                         if len(cancelled_orders) == 0:
                             print("The list is empty")
                         else:
-                            print(f"The number of expired orders : {len(cancelled_orders)}")
+                            print(f"The number of cancelled orders : {len(cancelled_orders)}")
                             for i in cancelled_orders:
                                 print(f"Id: {i.display()['id'][0]}", end="|  |")
                                 print(f"S.date: {''.join(i.display()['start_date'])}", end="|  |")
@@ -278,7 +278,7 @@ while True:
                             bo_exist = [i for i in books if
                                         "".join(i.get_id()) == "".join(or_exist[0].get_book_id())]
                             print(
-                                f"The status of the borrow order for the book with title {''.join(bo_exist[0].get_name())} is {''.join(or_exist[0].get_status())}")
+                                f"The status of the borrow order for the book with title ({''.join(bo_exist[0].get_name())}) is ({''.join(or_exist[0].get_status())})")
                         else:
                             print("The borrow order id that you entered is not exist , try to enter valid id.")
                         print("Returned to Orders")
