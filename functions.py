@@ -1,4 +1,4 @@
-from models import Book
+from termcolor import cprint, colored
 
 
 def add_client(Client, clients):
@@ -7,34 +7,34 @@ def add_client(Client, clients):
     valid_phone = ""
 
     while True:
-        name = input("Enter the client's full name please: ")
+        name = input(colored("Enter the client's full name please: ", "cyan"))
         if not "".join(name.split()).isalpha():
-            print("enter a a valid name please")
+            cprint("enter a a valid name please", "red")
             continue
         if len(name.split(" ")) < 2:
-            print("enter the full name please")
+            cprint("enter the full name please", "red")
             continue
         else:
             full_name = name.upper()
             break
     while True:
-        age = input("Enter the client's age please: ")
+        age = input(colored("Enter the client's age please: ", "cyan"))
         if not age.isdigit():
-            print("enter only digit numbers please")
+            cprint("enter only digit numbers please", "red")
             continue
         if not int(age) in range(18, 66):
-            print("Sorry only ages from 18 to 65 are allowed")
+            cprint("Sorry only ages from 18 to 65 are allowed", "red")
             continue
         else:
             age_num = age
             break
     while True:
-        phone = input("Enter the client's phone number please: ")
+        phone = input(colored("Enter the client's phone number please: ", "cyan"))
         if not phone.isdigit():
-            print("enter only digit numbers please")
+            cprint("enter only digit numbers please", "red")
             continue
         if not phone.startswith("059") or len(phone) != 10:
-            print("Enter a valid phone number which starts with '059' and has 10 nums ")
+            cprint("Enter a valid phone number which starts with '059' and has 10 nums ", "red")
             continue
         else:
             valid_phone = phone
@@ -46,11 +46,10 @@ def add_client(Client, clients):
         phone_num=valid_phone
     )
     clients.append(new_client)
-    print(f"A new client had been added successfully ,his id is '{new_client.get_id_no()}'")
+    cprint("A new client had been added successfully ,his id is ", "white", "on_grey", end="")
+    cprint(f"{new_client.get_id_no()}", "yellow", "on_grey")
     return new_client
 
-
-# title, description, author
 
 def add_librarian(Librarian, librarians):
     full_name = ""
@@ -58,45 +57,45 @@ def add_librarian(Librarian, librarians):
     valid_phone = ""
     valid_salary = ""
     while True:
-        name = input("Enter the librarian's full name please: ")
+        name = input(colored("Enter the librarian's full name please: ", "cyan"))
         if not "".join(name.split()).isalpha():
-            print("enter a a valid name please")
+            cprint("enter a a valid name please", "red")
             continue
         if len(name.split(" ")) < 2:
-            print("enter the full name please")
+            cprint("enter the full name please", "red")
             continue
         else:
             full_name = name.upper()
             break
     while True:
-        age = input("Enter the librarian's age please: ")
+        age = input(colored("Enter the librarian's age please: ", "cyan"))
         if not age.isdigit():
-            print("enter only digit numbers please")
+            cprint("enter only digit numbers please", "red")
             continue
         if not int(age) in range(18, 100):
-            print("Sorry only ages from 18 to 99 are allowed")
+            cprint("Sorry only ages from 18 to 99 are allowed", "red")
             continue
         else:
             age_num = age
             break
     while True:
-        phone = input("Enter the librarian's phone number please: ")
+        phone = input(colored("Enter the librarian's phone number please: ", "cyan"))
         if not phone.isdigit():
-            print("enter only digit numbers please")
+            cprint("enter only digit numbers please", "red")
             continue
         if not phone.startswith("059") or len(phone) != 10:
-            print("Enter a valid phone number which starts with '059' and has 10 nums ")
+            cprint("Enter a valid phone number which starts with '059' and has 10 nums ", "red")
             continue
         else:
             valid_phone = phone
             break
     while True:
-        salary = input("Enter the librarian's salary please: ")
+        salary = input(colored("Enter the librarian's salary please: ", "cyan"))
         if "".join(salary.split(".")).isdigit():
             valid_salary = salary
             break
         else:
-            print("enter only digit numbers please")
+            cprint("enter only digit numbers please", "red")
             continue
 
     new_librarian = Librarian(
@@ -107,7 +106,8 @@ def add_librarian(Librarian, librarians):
     salary = valid_salary
     new_librarian.set_salary(salary)
     librarians.append(new_librarian)
-    print(f"A new librarian had been added successfully ,his id is '{new_librarian.get_id_no()}'")
+    cprint("A new librarian had been added successfully ,his id is ", "white", "on_grey", end="")
+    cprint(f"{new_librarian.get_id_no()}", "yellow", "on_grey")
     return new_librarian
 
 
@@ -115,18 +115,18 @@ def add_book(Book, books):
     title = ""
     author = ""
     while True:
-        t = input("Enter the book's title please: ")
+        t = input(colored("Enter the book's title please: ", "cyan"))
         if not "".join(t.split()).isalpha():
-            print("enter a a valid name please")
+            cprint("enter a a valid name please", "red")
             continue
         else:
             title = t.upper()
             break
-    description = input("Enter the book's description please: ")
+    description = input(colored("Enter the book's description please: ", "cyan"))
     while True:
-        a = input("Enter the book's author name please: ")
-        if not t.isalpha():
-            print("enter a a valid name please")
+        a = input(colored("Enter the book's author name please: ", "cyan"))
+        if not a.isalpha():
+            cprint("enter a a valid name please", "red")
             continue
         else:
             author = a.upper()
@@ -135,8 +135,9 @@ def add_book(Book, books):
     new_book = Book(
         title=title,
         description=description,
-        author=author,)
+        author=author, )
 
     books.append(new_book)
-    print(f"A new book had been added successfully ,his id is '{new_book.get_id()}'")
+    cprint("A new book had been added successfully ,his id is ", "white", "on_grey", end="")
+    cprint(f"{new_book.get_id()}", "yellow", "on_grey")
     return new_book
