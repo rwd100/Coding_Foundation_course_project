@@ -101,7 +101,7 @@ class BorrowOrder:
             "end_date": self._end_date,
             "book_id": self._book_id,
             "client_id": self._client_id,
-            "status": self._status
+            "status": self.check_status()
         }
 
     def get_id(self):

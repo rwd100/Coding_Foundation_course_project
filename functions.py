@@ -141,3 +141,14 @@ def add_book(Book, books):
     cprint("A new book had been added successfully ,his id is ", "white", "on_grey", end="")
     cprint(f"{new_book.get_id()}", "yellow", "on_grey")
     return new_book
+
+
+def status_color(status):
+    if status == "Active":
+        return colored(status, "green")
+    if status == "Inactive":
+        return colored(status, "red")
+    if status == "Expired":
+        return colored(status, "blue")
+    if status == "Cancelled":
+        return colored(status, "red")
