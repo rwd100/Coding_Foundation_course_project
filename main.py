@@ -3,7 +3,7 @@ from functions import add_client, add_librarian, add_book
 from models import Client, Book, Librarian, BorrowOrder
 
 print("Welcome to our Library system")
-# The Star Wars Book: Expand your knowledge of a galaxy far, far away
+# The Star
 orders = []
 librarians = []
 clients = [
